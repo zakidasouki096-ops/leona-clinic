@@ -555,11 +555,13 @@
       font-weight: 700;
       color: var(--ink);
       letter-spacing: 0;
+      overflow-wrap: break-word;
     }
     .hero-title .line { display: block; }
     .hero-title .accent {
       position: relative; display: inline-block;
       color: var(--gold-deep); padding-bottom: .08em;
+      max-width: 100%; overflow-wrap: break-word;
     }
     .title-underline {
       position: absolute; inset-inline: 0; bottom: -.05em;
@@ -1183,7 +1185,7 @@
       display: flex; flex-wrap: wrap; gap: .55rem;
       margin-top: auto; padding-top: 1.8rem;
     }
-    .contact-actions .btn { font-size: .8rem; padding-inline: 1.05rem; }
+    .contact-actions .btn { font-size: .8rem; padding-inline: 1.05rem; max-width: 100%; white-space: normal; }
     .contact-seal {
       display: flex; align-items: center; gap: .55rem;
       margin-top: 1.25rem;
@@ -1959,7 +1961,8 @@
     ],
     "sameAs": [
       "https://www.instagram.com/leona.clinic/",
-      "https://www.tiktok.com/@leona.clinic"
+      "https://www.tiktok.com/@leona.clinic",
+      "https://www.snapchat.com/@leonaclinic"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
