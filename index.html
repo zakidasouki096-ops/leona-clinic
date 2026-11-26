@@ -6,6 +6,19 @@
   <title>عيادات ليونا | LEONA Clinic — العناية بالبشرة والليزر في الرياض</title>
   <meta name="description" content="عيادات ليونا في حي الملقا بالرياض: عناية بالبشرة، جلسات هيدرا ليونا، وإزالة الشعر بالليزر بأجهزة حديثة وبأيدي طبيبات وأخصائيات. احجزي على 9200 31310.">
   <meta name="theme-color" content="#FAF8F5">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('leona-clinic-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = (stored === 'dark' || stored === 'light') ? stored : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) { meta.setAttribute('content', theme === 'dark' ? '#12100D' : '#FAF8F5'); }
+      } catch (e) {}
+    })();
+  </script>
   <meta name="color-scheme" content="light">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ar_SA">
@@ -143,6 +156,7 @@
 
     *, *::before, *::after { box-sizing: border-box; }
     html {
+      color-scheme: light;
       scroll-behavior: smooth;
       -webkit-text-size-adjust: 100%;
       scroll-padding-top: calc(var(--nav-h) + 20px);
@@ -166,7 +180,7 @@
     svg { display: block; }
     a { color: inherit; text-decoration: none; }
     button, input, select { font: inherit; }
-    .btn, .menu-toggle, .wa-float, .nav-cta-compact { touch-action: manipulation; }
+    .btn, .menu-toggle, .theme-toggle, .wa-float, .nav-cta-compact { touch-action: manipulation; }
     button { color: inherit; }
     ol { margin: 0; padding: 0; list-style: none; }
     h1, h2, h3, p { margin: 0; }
@@ -450,6 +464,24 @@
     .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
     .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .theme-toggle {
+      display: none; place-items: center;
+      width: 44px; height: 44px; flex: none;
+      border: 1px solid var(--line); border-radius: 50%;
+      background: transparent; color: var(--ink); cursor: pointer;
+      transition: border-color .25s, background .25s, color .25s;
+    }
+    .js .theme-toggle { display: grid; }
+    .theme-toggle:hover {
+      border-color: var(--gold);
+      background: rgba(197,160,89,.08);
+      color: var(--gold-deep);
+    }
+    .theme-toggle svg { width: 19px; height: 19px; }
+    .theme-toggle .icon-sun { display: none; }
+    html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+    html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
     @media (min-width: 480px) { .nav-cta { display: inline-flex; } .nav-cta-compact { display: none; } }
     @media (min-width: 1024px) {
@@ -1326,9 +1358,9 @@
     @media (max-width: 380px) {
       .brand-mark { width: 39px; height: 39px; }
       .brand-ar { font-size: .94rem; }
-      .brand-en { font-size: .77rem; letter-spacing: .15em; }
+      .brand-en { font-size: .68rem; letter-spacing: .08em; }
       .nav-inner { gap: .45rem; }
-      .nav-actions { gap: .35rem; }
+      .nav-actions { gap: .25rem; }
     }
     @media (max-width: 360px) {
       .shell { width: calc(100% - 28px); }
@@ -1340,6 +1372,125 @@
       .booking-card, .contact-panel { padding: 1.15rem; }
       .contact-phone { font-size: 1.1rem; }
       .footer-bottom { font-size: .62rem; }
+    }
+
+    /* ============================================================
+       14. Dark theme
+       ============================================================ */
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --gold: #D2AE68;
+      --gold-deep: #E2C48A;
+      --gold-ink: #EAD3A3;
+      --gold-soft: #E8D9BE;
+      --gold-pale: #2A2318;
+      --ink: #F4EEE4;
+      --ink-2: #E6DCCB;
+      --ink-3: #CDC1AE;
+      --muted: #B4A793;
+      --cream: #12100D;
+      --sand: #1A1611;
+      --white: #1C1813;
+      --line: #342D23;
+      --error: #F2A48E;
+      --shadow-soft: 0 30px 70px -50px rgba(0,0,0,.85);
+      --shadow-card: 0 20px 46px -34px rgba(0,0,0,.8);
+    }
+
+    html[data-theme="dark"] .announcement,
+    html[data-theme="dark"] .standards { background: #0C0A08; }
+
+    html[data-theme="dark"] .contact-panel {
+      background: #14100B;
+      border: 1px solid rgba(197,160,89,.16);
+    }
+
+    html[data-theme="dark"] .site-header { background: rgba(18,16,13,.86); }
+    html[data-theme="dark"] .site-header.is-scrolled { background: rgba(18,16,13,.97); }
+
+    html[data-theme="dark"] .skip-link {
+      background: #0C0A08;
+      color: #F4EEE4;
+    }
+
+    html[data-theme="dark"] .hero::before {
+      background:
+        radial-gradient(48% 58% at 14% 26%, rgba(197,160,89,.10), transparent 72%),
+        radial-gradient(40% 52% at 86% 76%, rgba(197,160,89,.07), transparent 74%),
+        linear-gradient(180deg, #17130E 0%, var(--cream) 100%);
+    }
+
+    html[data-theme="dark"] .booking {
+      background:
+        radial-gradient(55% 60% at 12% 12%, rgba(197,160,89,.08), transparent 70%),
+        linear-gradient(180deg, var(--sand) 0%, #14110D 100%);
+    }
+
+    html[data-theme="dark"] .mirror-inner {
+      background: #1C1813;
+      border-color: rgba(244,238,228,.24);
+    }
+    html[data-theme="dark"] .mirror-label {
+      background: rgba(18,16,13,.8);
+      border-color: rgba(197,160,89,.38);
+      color: var(--gold-ink);
+    }
+    @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+      html[data-theme="dark"] .mirror-label { background: rgba(18,16,13,.94); }
+    }
+
+    html[data-theme="dark"] .trust-icon { background: rgba(197,160,89,.12); }
+    html[data-theme="dark"] .review-tag { background: rgba(197,160,89,.1); }
+
+    html[data-theme="dark"] .input,
+    html[data-theme="dark"] .select {
+      background: #17130F;
+      border-color: #3A3226;
+      color: var(--ink);
+    }
+    html[data-theme="dark"] .input::placeholder { color: #9C8F7C; }
+    html[data-theme="dark"] .input:hover,
+    html[data-theme="dark"] .select:hover { border-color: #4A4032; }
+    html[data-theme="dark"] .input:focus,
+    html[data-theme="dark"] .select:focus {
+      background: #1A1510;
+      border-color: var(--gold-deep);
+    }
+    html[data-theme="dark"] .input[aria-invalid="true"],
+    html[data-theme="dark"] .select[aria-invalid="true"] {
+      border-color: #E07A5F;
+      background: #2A1714;
+    }
+    html[data-theme="dark"] .select:invalid { color: #9C8F7C; }
+
+    html[data-theme="dark"] .btn-primary,
+    html[data-theme="dark"] .nav-cta-compact,
+    html[data-theme="dark"] .service-card:hover .service-icon,
+    html[data-theme="dark"] .service-card:focus-within .service-icon { color: #211C16; }
+
+    html[data-theme="dark"] .btn-primary:hover {
+      background: #DDBB78;
+      border-color: #DDBB78;
+    }
+    html[data-theme="dark"] .nav-cta-compact:hover { background: #DDBB78; }
+    html[data-theme="dark"] .btn-primary:focus-visible { outline-color: #F4EEE4; }
+    html[data-theme="dark"] ::selection { color: #211C16; }
+
+    html[data-theme="dark"] .btn-ghost {
+      color: var(--ink);
+      border-color: rgba(244,238,228,.24);
+    }
+    html[data-theme="dark"] .btn-ghost:hover { background: rgba(197,160,89,.1); }
+
+    html[data-theme="dark"] .service-num { color: rgba(226,196,138,.9); }
+    html[data-theme="dark"] .service-link:hover span { border-bottom-color: rgba(226,196,138,.5); }
+    html[data-theme="dark"] .services-note a { border-bottom-color: rgba(226,196,138,.35); }
+
+    html[data-theme="dark"] .wa-float { border-color: rgba(244,238,228,.86); }
+    html[data-theme="dark"] .wa-float:focus-visible { outline-color: #F4EEE4; }
+    html[data-theme="dark"] .wa-float-label {
+      background: #0C0A08;
+      color: #F4EEE4;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1410,6 +1561,10 @@
         <a class="nav-cta-compact" href="#booking" aria-label="احجزي موعدك الآن">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17M8.5 14h2M13.5 14h2M8.5 17.5h2"/></svg>
         </a>
+        <button class="theme-toggle" type="button" aria-label="تفعيل المظهر الداكن" aria-pressed="false" title="المظهر الداكن">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.2 14.2A8.4 8.4 0 0 1 9.8 3.8a8.5 8.5 0 1 0 10.4 10.4Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg>
+        </button>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="فتح القائمة">
           <span></span><span></span><span></span>
         </button>
@@ -1993,6 +2148,47 @@
       var resetButton = document.getElementById('reset-form');
       var successWhatsapp = document.getElementById('success-whatsapp');
       var whatsappNumber = '966920031310';
+
+      /* Theme */
+      var themeToggle = document.querySelector('.theme-toggle');
+      var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+      var themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+      var THEME_KEY = 'leona-clinic-theme';
+
+      function syncThemeButton(theme) {
+        if (!themeToggle) { return; }
+        var dark = theme === 'dark';
+        themeToggle.setAttribute('aria-pressed', String(dark));
+        themeToggle.setAttribute('aria-label', dark ? 'تفعيل المظهر الفاتح' : 'تفعيل المظهر الداكن');
+        themeToggle.title = dark ? 'المظهر الفاتح' : 'المظهر الداكن';
+      }
+
+      function applyTheme(theme, persist) {
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+        if (themeColorMeta) {
+          themeColorMeta.setAttribute('content', theme === 'dark' ? '#12100D' : '#FAF8F5');
+        }
+        syncThemeButton(theme);
+        if (persist) {
+          try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+        }
+      }
+
+      syncThemeButton(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          applyTheme(next, true);
+        });
+      }
+      if (themeMedia.addEventListener) {
+        themeMedia.addEventListener('change', function (event) {
+          var stored = null;
+          try { stored = localStorage.getItem(THEME_KEY); } catch (e) {}
+          if (!stored) { applyTheme(event.matches ? 'dark' : 'light', false); }
+        });
+      }
 
       function buildWhatsAppUrl(name, phone, service) {
         var message = [
